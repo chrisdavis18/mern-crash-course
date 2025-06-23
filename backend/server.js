@@ -14,7 +14,8 @@ const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 app.use(express.json()); // allows us to accept json data in body
-app.use(cors());
+// app.use(cors());
+// app.all('/{*any}', (req, res, next) => {})
 app.use('/api/products', productRoutes);
 
 // Serve Up Static Files
@@ -23,6 +24,7 @@ if(process.env.NODE_ENV === 'production'){
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
     });
+    
 }
 
 
