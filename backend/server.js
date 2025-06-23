@@ -21,17 +21,13 @@ app.use('/api/products', productRoutes);
 // Serve Up Static Files
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname, 'frontend/build')));
-    app.get('*', (req, res) => {
+    app.get('*/splat', (req, res) => {
         res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
     });
     
 }
 
-app.all('/*splat', (req, res) => {
-    res.status(404).json({
-        success: false, message: `The URL ${req.originalUrl} doesn't exist`
-    });
-});
+
 
 
 app.listen(PORT, () => {
